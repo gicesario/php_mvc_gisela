@@ -1,0 +1,27 @@
+<?php
+    $layout = "layouts/layout_admin";
+    $layoutParams['pageTitle'] = "Nova Marca";
+?>
+<h1><?=$layoutParams['pageTitle']?></h1>
+
+<form method="post">
+
+    <div class="form-content">
+        <label for="nome"><b>Nome</b></label>
+        <input type="text" name="nome" required>
+
+        <label for="pais"><b>Pais</b></label>
+        <input type="text" name="pais" required>
+
+        <label for="cidade"><b>Cidade</b></label>
+        <input type="text" name="cidade" required>  
+
+        <label for="uf"><b>UF</b></label>
+        <input type="text" name="uf" required>
+
+            
+        <button type="submit">Gravar</button>
+    </div>
+
+</form>
+	

@@ -1,0 +1,117 @@
+<?php
+    $layout = "layouts/layout_site";
+    $layoutParams['pageTitle'] = "Registro Cliente";
+?>
+
+<div class="col-lg-6 offset-lg-3 py-4">
+
+    <h2>Registro de Cliente</h2>
+
+    <form class="my-4" method="POST">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="nome">Nome Completo</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" required>
+            </div>
+        </div>  
+
+        <div class="mb-3">
+            <label for="fone">Telefone</label>
+            <input type="fone" class="form-control" id="fone" name="fone" placeholder="(__) _____-____">
+        </div>        
+
+        <hr class="mb-4">
+
+        <h5>Endereço</h5>
+
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="form-group has-danger">
+                    <label for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="00000-000" required>
+                    <div class="invalid-feedback">CEP invalido ou não encontrado</div>
+                </div>
+            </div>
+            <div class="col-md-5 mb-3">
+                <label for="estado">Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="cidade">Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                <label for="endereco">Endereço</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="numero">Numero</label>
+                <input type="text" class="form-control" id="numero" name="numero" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="complemento">Complemento</label>
+            <input type="text" class="form-control" id="complemento" name="complemento">
+        </div>
+
+        <hr class="mb-4">
+
+        <h5>Conta</h5>
+  
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com">
+        </div>
+
+        <div class="mb-3">
+            <label for="senha">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Sua senha">
+        </div>        
+        
+        <div class="mb-3">
+            <label for="confirma_senha">Confirmar Senha</label>
+            <input type="password" class="form-control" id="confirma_senha" name="confirma_senha" placeholder="Repita sua senha">
+        </div>
+
+        <hr class="mb-4">
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar Cadastro</button>
+    </form>
+
+</div>
+
+<script>
+    $(function() {
+        $('#cep').keyup(function() {
+            var cepElem = $('#cep');
+            if($.trim(cepElem.val().replace(/[^0-9]+/g, '')).length == 8){
+                $.getScript('http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep='+cepElem.val(), function(){
+                    if(resultadoCEP['resultado'] != "0"){
+                        cepElem.removeClass("is-invalid");
+                        
+                        $('#endereco').val(unescape(resultadoCEP['tipo_logradouro']) +" "+ unescape(resultadoCEP['logradouro']));
+                        $('#bairro').val(unescape(resultadoCEP['bairro']));
+                        $('#cidade').val(unescape(resultadoCEP['cidade']));
+                        $('#estado').val(unescape(resultadoCEP['uf']));
+                        $('#numero').focus();
+                    }else{
+                        cepElem.addClass("is-invalid");
+                    }
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,40 @@
+<?php
+    $layout = "layouts/layout_admin";
+    $layoutParams['pageTitle'] = "Produtos";
+?>
+<h1><?=$layoutParams['pageTitle']?></h1>
+
+
+<a href="/admin/produtos/novo">
+    <button>Novo Produto</button>
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Categoria</th>
+            <th>Valor</th>
+            <th>Desconto</th>
+            <th>Disponivel</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($produtos as $produto) :?>
+            <tr>
+                <td><?=$produto->nome_chocolate?></td>
+                <td><?=$produto->id_marca_chocolate?></td>
+                <td><?=$produto->id_categoria?></td>
+                <td><?=$produto->valor_preco?></td>
+                <td><?=$produto->valor_desconto?></td>
+                <td><?=$produto->quant_diponivel?></td>
+                <td>
+                    <a href="/admin/produtos/alterar/<?=$produto->id?>">Editar</a> |
+                    <a href="/admin/produtos/visualizar/<?=$produto->id?>">Visualizar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

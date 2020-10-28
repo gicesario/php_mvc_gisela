@@ -1,0 +1,32 @@
+<?php
+    $layout = "layouts/layout_site";
+    $layoutParams['pageTitle'] = "Login Cliente";
+?>
+
+<div class="col-lg-6 offset-lg-3 py-4">
+
+    <h2>Login Cliente</h2>
+
+    <form class="my-4" method="POST">
+
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com">
+        </div>
+
+        <div class="mb-3">
+            <label for="senha">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Sua senha">
+        </div>        
+
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
+    </form>
+
+
+    <a href="/conta/registro">Não sou cadastrado</a>
+
+</div>
+
+
+
+

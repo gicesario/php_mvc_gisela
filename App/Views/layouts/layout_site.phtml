@@ -1,0 +1,90 @@
+<?php
+    $pageTitle = $pageTitle ?? '';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title><?= implode(' - ',['Chocoloja',$pageTitle])?></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+
+        <div class="jumbotron mb-0" style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url(/Resources/img/banner.png)">
+            <div class="container text-center" >
+                <h1>Chocoloja da Gihh</h1>      
+                <p>Chocolates chocolatudos!</p>
+            </div>
+        </div>
+
+
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="/">
+                <img src="/Resources/img/logo.png" width="80" alt="logo"></img>
+            </a>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Produtos</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">       
+                <li class="nav-item">
+                    <a class="nav-link" href="/carrinho">
+                        <i class="fas fa-shopping-cart"></i>    
+                        Carrinho 
+                        <?php 
+                            $cart = Core\Session::get('cart');
+                            if($cart){
+                                $totalItems = count($cart);
+                                echo "($totalItems)";
+                            }
+                        ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/conta">
+                        <i class="fas fa-user"></i>  
+                        Sua Conta 
+                    </a>
+                </li>        
+            </ul>
+        </nav>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <?=$body?>
+            </div>
+
+            <div class="row">
+                <div class="col-12" style="background-color: lightgray">
+                    <footer class="container-fluid text-center">
+                        <p>Gicesario - Copyright <?=date("Y")?></p>  
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

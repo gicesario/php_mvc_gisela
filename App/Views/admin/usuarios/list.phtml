@@ -1,0 +1,32 @@
+<?php
+    $layout = "layouts/layout_admin";
+    $layoutParams['pageTitle'] = "Usuários";
+?>
+<h1><?=$layoutParams['pageTitle']?></h1>
+
+<a href="/admin/usuarios/novo">
+    <button>Novo Usuário</button>
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Admin</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($usuarios as $usuario) :?>
+            <tr>
+                <td><?=$usuario->id?></td>
+                <td><?=$usuario->email?></td>
+                <td><?=$usuario->is_admin ? "Sim":"Não"?></td>
+                <td>
+                    <a href="/admin/usuarios/alterar/<?=$usuario->id?>">Editar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

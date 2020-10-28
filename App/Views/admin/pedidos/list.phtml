@@ -1,0 +1,32 @@
+<?php
+    $layout = "layouts/layout_admin";
+    $layoutParams['pageTitle'] = "Pedidos";
+?>
+<h1><?=$layoutParams['pageTitle']?></h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Frete</th>
+            <th>Valor Total</th>
+            <th>Data Recebimento</th>
+            <th>Data Entrega</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($pedidos as $pedido) :?>
+            <tr>
+                <td><?=$pedido->id_clientes?></td>
+                <td><?=$pedido->valor_frete?></td>
+                <td><?=$pedido->valot_total?></td>
+                <td><?=$pedido->data_recebimento?></td>
+                <td><?=$pedido->data_entrega?></td>
+                <td>
+                    <a href="/admin/pedidos/visualizar/<?=$produto->id?>">Visualizar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

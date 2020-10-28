@@ -1,0 +1,31 @@
+<?php
+    $layout = "layouts/layout_admin";
+    $layoutParams['pageTitle'] = "Categorias";
+?>
+
+<h1><?=$layoutParams['pageTitle']?></h1>
+
+<a href="/admin/categorias/novo">
+    <button>Nova Categoria</button>
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($categorias as $categoria) :?>
+            <tr>
+                <td><?=$categoria->nome_categoria?></td>
+                <td><?=$categoria->desc_categoria?></td>
+                <td>
+                    <a href="/admin/categorias/alterar/<?=$categoria->id?>">Editar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

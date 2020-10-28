@@ -1,0 +1,22 @@
+<?php
+    $layout = "layouts/layout_admin";
+    $layoutParams['pageTitle'] = "Nova Categoria";
+?>
+
+<h1><?=$layoutParams['pageTitle']?></h1>
+
+
+<form method="post">
+
+    <div class="form-content">
+        <label for="nome"><b>Nome</b></label>
+        <input type="text" name="nome" required>
+
+        <label for="descricao"><b>Descrição</b></label>
+        <input type="text" name="descricao" required>
+
+            
+        <button type="submit">Gravar</button>
+    </div>
+
+</form>

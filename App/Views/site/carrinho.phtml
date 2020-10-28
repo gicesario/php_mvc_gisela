@@ -1,0 +1,90 @@
+<?php
+    $layout = "layouts/layout_site";
+    $layoutParams['pageTitle'] = "Carrinho";
+    $total = 0;
+?>
+
+<?php if(empty($produtos)): ?>
+    <div class="col-12">
+        <h1 class="text-center my-5">Carrinho Vazio</h1>
+        <div class="row mb-5">
+            <div class="offset-md-3 col-md-6">
+                <a href="/" class="btn btn-block btn-secondary">Voltar as Compras</a>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
+    <div class="col-12">
+        <h1 class="text-center my-5">Carrinho</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Produto</th>
+                        <th scope="col" class="text-center">Quantidade</th>
+                        <th scope="col" class="text-right">Preço</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        foreach($produtos as $produto): 
+                            $quantidade = $carrinho[$produto->id]['qtd'];
+                            $valor = $quantidade * $produto->valor_preco;
+                            $total += $valor;
+                    ?>
+                        <tr>
+                            <td><img src="<?=$produto->imagem?>" width="50px" alt="Imagem produto"></td>
+                            <td><?=$produto->nome_chocolate?></td>
+                            <td>
+                                <form class="form-inline" action="/carrinho/update" method="POST">
+                                    <div class="form-group mx-sm-3">
+                                        <input type="hidden" name="produto_id" value="<?=$produto->id?>" />
+                                        <input class="form-control" type="number" name="qtd" value="<?=$quantidade?>" />
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i></button>
+                                </form>
+                            </td>
+                            <td class="text-right">R$ <?=number_format($valor, 2, ',', '.')?></td>
+                            <td class="text-right">
+                                <form class="form-inline" action="/carrinho/remove" method="POST">
+                                    <input type="hidden" name="produto_id" value="<?=$produto->id?>" />
+                                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button> 
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right">Sub-Total</td>
+                        <td class="text-right"><?=number_format($total,2,',','.')?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-right">Frete</td>
+                        <td class="text-right">Gratis!</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-right"><strong>Total</strong></td>
+                        <td class="text-right"><strong>R$ <?=number_format($total, 2, ',', '.') ?></strong></td>
+                    </tr>
+                </tfoot>
+                
+            </table>
+        </div>
+    </div>
+
+    <div class="col mb-2">
+        <div class="row">
+            <div class="col-sm-12  col-md-6">
+                <a href="/" class="btn btn-lg btn-block btn-secondary">Voltar as Compras</a>
+            </div>
+            <div class="col-sm-12 col-md-6 text-right">
+                <a href="/checkout" class="btn btn-lg btn-block btn-success text-uppercase">Checkout</a>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+

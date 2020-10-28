@@ -1,0 +1,34 @@
+<?php
+    $layout = "layouts/layout_admin";
+    $layoutParams['pageTitle'] = "Marcas";
+?>
+<h1><?=$layoutParams['pageTitle']?></h1>
+
+<a href="/admin/marcas/novo">
+    <button>Nova Marca</button>
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Pais</th>
+            <th>Cidade</th>
+            <th>UF</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($marcas as $marca) :?>
+            <tr>
+                <td><?=$marca->nome_marca?></td>
+                <td><?=$marca->pais_fornecedor?></td>
+                <td><?=$marca->cidade_fornecedor?></td>
+                <td><?=$marca->uf_forcenecor?></td>
+                <td>
+                    <a href="/admin/marcas/alterar/<?=$marca->id?>">Editar</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
